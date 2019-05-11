@@ -8,19 +8,39 @@
 </head>
 
 <body>
-	<ul>
-		<li><a href="hash/index.html">Hash Router</a></li>
-		<li><a href="history/index.html">History Router</a></li>
-	</ul>
 
-	<h1>Hash Router(React)</h1>
-	<div id="react_hash_container"></div>
-	<hr />
+	<a href='/'>重置地址</a>
 
-	<h1>History Router(React 实现)</h1>
-	<div id="react_history_container"></div>
-	<hr />
+	<div class="vanilla_hash">
+		<h1>Hash Router(Vanilla)</h1>
+		<ul>
+			<li><a href="#/home">home</a></li>
+			<li><a href="#/about">about</a></li>
+		</ul>
+		<div class="container"></div>
+	</div>
 
+	<div class="vanilla_history">
+		<h1>History Router(Vanilla)</h1>
+		<ul>
+			<li><a href="/home">home</a></li>
+			<li><a href="/about">about</a></li>
+		</ul>
+		<div class="container"></div>
+	</div>
+
+	<div class="react_hash">
+		<h1>Hash Router(React)</h1>
+		<div id="react_hash_container"></div>
+	</div>
+
+	<div class="react_history">
+		<h1>History Router(React)</h1>
+		<div id="react_history_container"></div>
+	</div>
+
+	<script src="./vanilla/hash/index.js"></script>
+	<script src="./vanilla/history/index.js"></script>
 	<script src="./react/hash/index.js"></script>
 	<script src="./react/history/index.js"></script>
 </body>
