@@ -104,25 +104,33 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"history/index.js":[function(require,module,exports) {
-window.addEventListener('DOMContentLoaded', onLoad);
-window.addEventListener('popstate', onPopState);
-var routeEl = null;
+})({"vanilla/hash/index.js":[function(require,module,exports) {
+// 页面加载完不会触发 hashchange，这里主动触发一次 hashchange 事件
+window.addEventListener('DOMContentLoaded', onLoad); // 监听路由变化
+
+window.addEventListener('hashchange', onHashChange); // 路由视图
+
+var routerView = null;
 
 function onLoad() {
-  routeEl = document.querySelector('#route');
-  onPopState();
-}
+  routerView = document.querySelector('.vanilla_hash .container');
+  onHashChange();
+} // 路由变化时，根据路由渲染对应 UI
 
-function onPopState() {
-  console.log('popstate:', location.pathname);
-  if (!routeEl) return;
 
-  if (location.pathname.indexOf('/home') !== -1) {
-    routeEl.innerHTML = 'home';
-  } else if (location.pathname.indexOf('/about') !== -1) {
-    routeEl.innerHTML = 'about';
-  } else {}
+function onHashChange() {
+  switch (location.hash) {
+    case '#/home':
+      routerView.innerHTML = '<h2>Home</h2>';
+      return;
+
+    case '#/about':
+      routerView.innerHTML = '<h2>About</h2>';
+      return;
+
+    default:
+      return;
+  }
 }
 },{}],"../../.nvm/versions/node/v8.11.3/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -293,5 +301,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../.nvm/versions/node/v8.11.3/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","history/index.js"], null)
-//# sourceMappingURL=/history.43606c21.map
+},{}]},{},["../../.nvm/versions/node/v8.11.3/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","vanilla/hash/index.js"], null)
+//# sourceMappingURL=/hash.621ff084.map
