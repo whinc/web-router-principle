@@ -3,23 +3,19 @@ import React from "react";
 const RouteContext = React.createContext("/");
 let historyRouter = null;
 class HistoryRouter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPath: extractPath(window.location.href)
-    };
-    this.onPopState = this.onPopState.bind(this);
-    historyRouter = this;
-  }
+  state = {
+    currentPath: extractPath(window.location.href)
+  };
 
-  onPopState(e) {
+  onPopState = e => {
     const currentPath = extractPath(window.location.href);
     console.log("onPopState:", currentPath);
     this.setState({ currentPath });
-  }
+  };
 
   componentDidMount() {
     window.addEventListener("popstate", this.onPopState);
+    historyRouter = this;
   }
 
   componentWillUnmount() {

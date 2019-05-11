@@ -3,18 +3,15 @@ import React from "react";
 const RouteContext = React.createContext("/");
 
 class BrowserRouter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPath: extractPath(window.location.href)
-    };
-    this.onHashChange = this.onHashChange.bind(this);
-  }
+  state = {
+    currentPath: extractPath(window.location.href)
+  };
 
-  onHashChange(e) {
-    console.log(extractPath(e.newURL));
-    this.setState({ currentPath: extractPath(e.newURL) });
-  }
+  onHashChange = e => {
+    const currentPath = extractPath(e.newURL);
+    console.log("onHashChange:", currentPath);
+    this.setState({ currentPath });
+  };
 
   componentDidMount() {
     window.addEventListener("hashchange", this.onHashChange);
@@ -41,10 +38,6 @@ const Route = ({ path, render }) => (
 
 const Link = ({ to, ...props }) => <a {...props} href={"#" + to} />;
 
-const extractPath = url => {
-  const foundIndex = url.indexOf("#");
-  if (foundIndex !== -1) return url.slice(foundIndex + 1);
-  else return "";
-};
+const extractPath = url => (/#(.*)$/g.exec(url) || ["", ""])[1];
 
 export { BrowserRouter, Route, Link };
