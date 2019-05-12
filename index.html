@@ -3,13 +3,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>router 实现原理演示</title>
+		<title>router 实现原理演示</title>
+		<style>
+			.preview {
+				display: none;
+			}
+			.visible {
+				display: block;
+			}
+		</style>
   </head>
 
   <body>
-    <a href="/">重置地址</a>
+		<div class="operation">
+			<div>
+				<input type="radio" name="framework" id="Vanilla" value="Vanilla" checked />
+				<label for="Vanilla">Vanilla</label>
 
-    <div class="vanilla hash">
+				<input type="radio" name="framework" id="React" value="React"/>
+				<label for="React">React</label>
+
+				<input type="radio" name="framework" id="Vue" value="Vue"/>
+				<label for="Vue">Vue</label>
+			</div>
+			<div>
+				<input type="radio" name="mode" id="Hash" value="Hash" checked />
+				<label for="Hash">Hash</label>
+
+				<input type="radio" name="mode" id="History" value="History"/>
+				<label for="History">History</label>
+			</div>
+			<div>
+				<a href="/">重置地址</a>
+			</div>
+		</div>
+
+    <div class="preview vanilla hash">
       <h1>Hash Router(Vanilla)</h1>
       <ul>
         <li><a href="#/home">home</a></li>
@@ -18,7 +47,7 @@
       <div class="container"></div>
     </div>
 
-    <div class="vanilla history">
+    <div class="preview vanilla history">
       <h1>History Router(Vanilla)</h1>
       <ul>
         <li><a href="/home">home</a></li>
@@ -27,17 +56,17 @@
       <div class="container"></div>
     </div>
 
-    <div class="react hash">
+    <div class="preview react hash">
       <h1>Hash Router(React)</h1>
       <div class="container"></div>
     </div>
 
-    <div class="react history">
+    <div class="preview react history">
       <h1>History Router(React)</h1>
       <div class="container"></div>
     </div>
 
-    <div class="vue hash">
+    <div class="preview vue hash">
       <h1>Hash Router(Vue)</h1>
       <ul>
         <li><router-link to="/home">home</router-link></li>
@@ -46,7 +75,7 @@
       <router-view></router-view>
     </div>
 
-    <div class="vue history">
+    <div class="preview vue history">
       <h1>History Router(Vue)</h1>
       <ul>
         <li><router-link to="/home">home</router-link></li>
@@ -55,6 +84,7 @@
       <router-view></router-view>
     </div>
 
+		<script src="./index.js"></script>
     <script src="./vanilla/hash/index.js"></script>
     <script src="./vanilla/history/index.js"></script>
     <script src="./react/hash/index.js"></script>
