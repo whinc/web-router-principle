@@ -1,21 +1,20 @@
 import React from "react";
+import utils from '~/utils'
+import RouteContext from './RouteContext'
 
-const RouteContext = React.createContext("/");
-let historyRouter = null;
-class HistoryRouter extends React.Component {
+export default class HistoryRouter extends React.Component {
   state = {
-    currentPath: extractPath(window.location.href)
+    currentPath: utils.extractUrlPath(window.location.href)
   };
 
   onPopState = e => {
-    const currentPath = extractPath(window.location.href);
+    const currentPath = utils.extractUrlPath(window.location.href);
     console.log("onPopState:", currentPath);
     this.setState({ currentPath });
   };
 
   componentDidMount() {
     window.addEventListener("popstate", this.onPopState);
-    historyRouter = this;
   }
 
   componentWillUnmount() {
@@ -24,34 +23,9 @@ class HistoryRouter extends React.Component {
 
   render() {
     return (
-      <RouteContext.Provider value={this.state.currentPath}>
+      <RouteContext.Provider value={{currentPath: this.state.currentPath, onPopState: this.onPopState}}>
         {this.props.children}
       </RouteContext.Provider>
     );
   }
 }
-
-const Route = ({ path, render }) => (
-  <RouteContext.Consumer>
-    {currentPath => currentPath === path && render()}
-  </RouteContext.Consumer>
-);
-
-const Link = ({ to, ...props }) => (
-  <a
-    href=""
-    {...props}
-    onClick={e => {
-      // 阻止默认行为
-      e.preventDefault();
-      // 更新 URL
-      window.history.pushState(null, "", to);
-      // 更新 UI
-      historyRouter && historyRouter.onPopState();
-    }}
-  />
-);
-
-const extractPath = url => /https?:\/\/[^/]+([^?#]*)/.exec(url)[1];
-
-export { HistoryRouter, Route, Link };

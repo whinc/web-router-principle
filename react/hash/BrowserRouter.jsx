@@ -1,14 +1,14 @@
 import React from "react";
+import RouteContext from './RouteContext'
+import utils from '~/utils'
 
-const RouteContext = React.createContext("/");
-
-class BrowserRouter extends React.Component {
+export default class BrowserRouter extends React.Component {
   state = {
-    currentPath: extractPath(window.location.href)
+    currentPath: utils.extractHashPath(window.location.href)
   };
 
   onHashChange = e => {
-    const currentPath = extractPath(e.newURL);
+    const currentPath = utils.extractHashPath(e.newURL);
     console.log("onHashChange:", currentPath);
     this.setState({ currentPath });
   };
@@ -23,21 +23,9 @@ class BrowserRouter extends React.Component {
 
   render() {
     return (
-      <RouteContext.Provider value={this.state.currentPath}>
+      <RouteContext.Provider value={{currentPath: this.state.currentPath}}>
         {this.props.children}
       </RouteContext.Provider>
     );
   }
 }
-
-const Route = ({ path, render }) => (
-  <RouteContext.Consumer>
-    {currentPath => currentPath === path && render()}
-  </RouteContext.Consumer>
-);
-
-const Link = ({ to, ...props }) => <a {...props} href={"#" + to} />;
-
-const extractPath = url => (/#(.*)$/g.exec(url) || ["", ""])[1];
-
-export { BrowserRouter, Route, Link };

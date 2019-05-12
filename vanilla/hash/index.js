@@ -7,7 +7,7 @@ window.addEventListener('hashchange', onHashChange)
 var routerView = null
 
 function onLoad () {
-  routerView = document.querySelector('.vanilla_hash .container')
+  routerView = document.querySelector('.vanilla.hash .container')
   onHashChange()
 }
 

@@ -2,6 +2,9 @@
   "name": "web-router-principle",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "url": "https://github.com/whinc/web-router-principle"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
@@ -22,7 +25,11 @@
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-template-compiler": "^2.6.10"
   }
 }

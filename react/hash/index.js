@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Link } from "./BrowserRouter";
+import BrowserRouter from "./BrowserRouter";
+import Route from './Route'
+import Link from './Link'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -16,5 +18,5 @@ ReactDOM.render(
     <Route path="/home" render={() => <h2>Home</h2>} />
     <Route path="/about" render={() => <h2>About</h2>} />
   </BrowserRouter>,
-  document.querySelector("#react_hash_container")
+  document.querySelector(".react.hash .container")
 );

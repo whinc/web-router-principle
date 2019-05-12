@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HistoryRouter, Route, Link } from "./HistoryRouter";
+import HistoryRouter from "./HistoryRouter";
+import Route from './Route'
+import Link from './Link'
 
 ReactDOM.render(
   <HistoryRouter>
@@ -16,5 +18,5 @@ ReactDOM.render(
     <Route path="/home" render={() => <h2>Home</h2>} />
     <Route path="/about" render={() => <h2>About</h2>} />
   </HistoryRouter>,
-  document.querySelector("#react_history_container")
+  document.querySelector(".react.history .container")
 );
