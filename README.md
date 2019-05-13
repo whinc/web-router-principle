@@ -1,6 +1,6 @@
 # web-router-principle
 
-前端路由实现原理参考
+本仓库用于存放文章[前端路由原理解析和实现](https://github.com/whinc/blog/issues/13)中的示例代码。
 
 ## 本地运行
 
